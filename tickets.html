@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Codo a Codo</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			const valorTicket = 200;
+			const est=0.2
+			const tr=0.5
+			const jr=0.85
+
+			const load = () =>{
+				var resumen = document.getElementById("resumen");
+				resumen.addEventListener("click", calcularPrecio, false);
+
+				var borrar = document.getElementById("borrar");
+				borrar.addEventListener("click", borrarDatos, false);
+			}
+			document.addEventListener("DOMContentLoaded", load, false);
+
+			const calcularPrecio = () => {
+				const cantTickets = document.getElementById('cantidad')
+				const totalPagar = document.getElementById('textPagar')
+				const opciones = document.getElementById('opciones')
+				let total = 0.0
+				switch (opciones.selectedIndex) {
+					case 0:
+						console.log(Number(cantTickets.value))
+						total = (Number(cantTickets.value)*valorTicket)*est
+					break;
+					case 1:
+						console.log(Number(cantTickets.value))
+						total = (Number(cantTickets.value)*valorTicket)*tr
+					break;
+					default:
+						console.log(Number(cantTickets.value))
+						total = (Number(cantTickets.value)*valorTicket)*jr
+					break;
+				}
+				totalPagar.innerHTML= 'Total a Pagar: $' + String(total)
+			}
+			const borrarDatos = () => {
+				const cantTickets = document.getElementById('cantidad')
+				const totalPagar = document.getElementById('textPagar')
+				const opciones = document.getElementById('opciones')
+				const nombre = document.getElementById('nombre')
+				const apellido = document.getElementById('apellido')
+				const correo = document.getElementById('correo')
+
+				nombre.value=''
+				apellido.value=''
+				correo.value=''
+				totalPagar.innerHTML= 'Total a Pagar: $'
+				cantTickets.value=0
+				opciones.selectedIndex=0
+			}
+        </script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<!-- <div class="container-fluid"> -->
+			<div class="container">
+				<a class="navbar-brand" href="/home.html">Conf Bs.As.</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+					<a class="nav-link active" href="#">La conferencia</a>
+					<a class="nav-link " href="#">Los oradores</a>
+					<a class="nav-link ">El lugar y la fecha</a>
+					<a class="nav-link ">Conviértete en orador</a>
+					<a class="nav-link active text-success" href="#">Comprar ticket</a>
+					</div>
+				</div>
+			</div>
+		 </nav>
+		 <div class="container">
+			<div class="row row-cols-1 row-cols-md-4 g-1 d-flex justify-content-center">
+				<div class="col">
+					<div class="card text-center border-primary border-2 " >
+						<div class="card-body">
+							<h5 class="card-title mt-2 fw-bold">Estudiantes</h5>
+							<p class="card-text mt-3">Tienen un descuento.</p>
+							<h5 class="mt-2 fw-bold">80 %</h5>
+							<p class="mt-3">* Presentar Documentación</p> 
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card text-center border-secondary border-2" >
+						<div class="card-body">
+							<h5 class="card-title mt-2 fw-bold">Trainee</h5>
+							<p class="card-text mt-3">Tienen un descuento.</p>
+							<h5 class="mt-2 fw-bold">50 %</h5>
+							<p class="mt-3">* Presentar Documentación</p> 
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card text-center border-warning border-2" >
+						<div class="card-body ">
+						<h5 class="card-title mt-2 fw-bold">Junior</h5>
+						<p class="card-text mt-3">Tienen un descuento.</p>
+						<h5 class="mt-2 fw-bold">15 %</h5>
+						<p class="mt-3">* Presentar Documentación</p> 
+						</div>
+					</div>
+				</div>
+		</div>
+			<div class="ticketsVenta">
+				<h9>VENTA</h9>
+				<h1>VALOR DEL TICKET $200</h1>
+			</div>
+			<form>
+				<div class="row mb-4">
+					<div class="col">
+						<div class="mb-3">
+							<input type="text" id="nombre" class="form-control" placeholder="Nombre">
+						</div>
+					</div>
+					<div class="col">
+						<div class="mb-3">
+							<input type="text" id="apellido" class="form-control" placeholder="Apellido">
+						</div>
+					</div>
+					<div class="row mb-1">
+						<div class="col">
+							<div class="mb-1">
+								<input type="text" id="correo" class="form-control" placeholder="Correo">
+							</div>
+						</div>
+					</div>
+				</div>
+	
+				<div class="row mb-4">
+					<div class="col">
+						<div class="mb-3">
+							<label for="cantidad">Cantidad</label>
+							<input type="number" id="cantidad" class="form-control" placeholder="Cantidad" min="1" pattern="^[0-9]+">
+						</div>
+					</div>
+					<div class="col">
+						<div class="mb-3">
+							<label for="categoria">Categoria</label>
+							<select class="form-select" aria-label="Categoria" id="opciones">
+								<option selected>Estudiante</option>
+								<option value="1">Trainee</option>
+								<option value="2">Junior</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row mb-4">
+					<div class="totalPagar" id="totalPagar">
+						<p id="textPagar">
+							Total a Pagar: $
+						</p>
+					</div>
+				</div>
+				<div class="row mb-4">
+					<div class="col">
+						<div class="mb-3">
+							<button type="button" class="btn btn-success-submit" id="borrar">Borrar</button>
+						</div>
+					</div>
+					<div class="col">
+						<div class="mb-3">
+							<button type="button" class="btn btn-success-submit" id="resumen">Resumen</button>
+						</div>
+					</div>
+				</div>
+	
+			</form>
+		</div>
+			<nav class="navbar navbar-dark bg-dark">
+				<div class="container">
+					<li class="nav-item">
+						<a class="nav-link">Preguntas<br>frecuentes</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">Contactanos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">Prensa</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">Conferencias</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">Terminos y <br>condiciones</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">Privacidad</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">Estudiantes</a>
+					</li>
+				</div>
+			</nav>
+	</body>
+		<style>
+			.card{
+				border-width: 3px;
+			}
+			.ticketsVenta{
+				text-align: center;
+				padding: 10px;
+			}
+			.btn-success-submit{
+				width: 100%;
+				background-color: #81c53d ;
+				color: whitesmoke;
+			}
+			.btn-success-submit:hover{
+				width: 100%;
+				background-color: #609130 ;
+				color: whitesmoke;
+			}
+			.totalPagar{
+				height: 70px;
+				font-weight: bold;
+				background-color: #cce2f6 ;
+				color: #439bd5 ;
+				padding: 22px;
+				border-radius: 5px;
+			}
+		</style>
+</html>
